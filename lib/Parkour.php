@@ -95,13 +95,14 @@ class Parkour {
 			return self::mapReduce($data, $callable, new Conjunct(), true);
 		}
 
-		foreach ($data as $key => $value) {
-			if (!$callable($value, $key)) {
-				return false;
-			}
-		}
+		// if we cannot find a "first not ok", then all is ok
 
-		return true;
+		$antiCallable = function($key, $value) use ($callable) {
+			return !$callable($key, $value);
+		};
+		
+		$firstNotOk = self::firstOk($data, $antiCallable);
+		return !$firstNotOk->valid();
 	}
 
 
@@ -121,13 +122,9 @@ class Parkour {
 			return self::mapReduce($data, $callable, new Disjunct(), false);
 		}
 
-		foreach ($data as $key => $value) {
-			if ($callable($value, $key)) {
-				return true;
-			}
-		}
-
-		return false;
+		// if we can find a "first ok", then we have "one ok"
+		$firstOk = self::firstOk($data, $callable);
+		return $firstOk->valid();
 	}
 
 	/**
@@ -136,7 +133,7 @@ class Parkour {
 	 *
 	 *	@param array $data Values.
 	 *	@param callable $callable Function to execute.
-	 *	@yield array Result
+	 *	@yields array Result
 	 */
 	public static function firstOk(array $data, callable $callable) {
 		foreach ($data as $key => $value) {
@@ -146,7 +143,7 @@ class Parkour {
 			}
 		}
 	}
-	
+
 
 
 	/**
