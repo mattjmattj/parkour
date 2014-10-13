@@ -185,6 +185,38 @@ class ParkourTest extends TestCase {
 	}
 
 
+	/**
+	 *
+	 */
+	public function testFirstOk() {
+		$data = [1, 2, 3, 4];
+
+		$closure = $this->closure([
+			[1, 0, false],
+			[2, 1, false],
+			[3, 2, false],
+			[4, 3, false]
+		]);
+
+		$result = Parkour::firstOk($data, $closure);
+		
+		$this->assertFalse($result->valid());
+
+
+		$closure = $this->closure([
+			[1, 0, false],
+			[2, 1, true],
+			[3, 2, false],
+			[4, 3, false]
+		], 2);
+		
+		$result = Parkour::firstOk($data, $closure);
+		
+		$this->assertTrue($result->valid());
+		$this->assertEquals(1, count($result));
+		$this->assertEquals([1 => 2], $result->current());
+	}
+
 
 	/**
 	 *

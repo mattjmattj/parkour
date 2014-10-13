@@ -92,6 +92,22 @@ _::oneOk([1, 2], function($value, $key) {
 // true
 ```
 
+### firstOk()
+
+```php
+_::firstOk([1, 2], function($value, $key) {
+	return false;
+});
+
+// empty generator
+
+_::firstOk([1, 2], function($value, $key) {
+	return $value === 1;
+});
+
+// [0 => 1]
+```
+
 ### filter()
 
 ```php

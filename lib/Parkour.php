@@ -130,6 +130,23 @@ class Parkour {
 		return false;
 	}
 
+	/**
+	 *	Executes a function on each of the given values and yields the first
+	 * 	truthy result, if any.
+	 *
+	 *	@param array $data Values.
+	 *	@param callable $callable Function to execute.
+	 *	@yield array Result
+	 */
+	public static function firstOk(array $data, callable $callable) {
+		foreach ($data as $key => $value) {
+			if ($callable($value, $key)) {
+				yield [$key => $value];
+				return;
+			}
+		}
+	}
+	
 
 
 	/**
