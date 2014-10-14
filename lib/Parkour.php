@@ -138,7 +138,7 @@ class Parkour {
 	public static function firstOk(array $data, callable $callable) {
 		foreach ($data as $key => $value) {
 			if ($callable($value, $key)) {
-				yield [$key => $value];
+				yield $key => $value;
 				return;
 			}
 		}

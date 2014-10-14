@@ -214,7 +214,8 @@ class ParkourTest extends TestCase {
 		
 		$this->assertTrue($result->valid());
 		$this->assertEquals(1, count($result));
-		$this->assertEquals([1 => 2], $result->current());
+		$this->assertEquals(2, $result->current());
+		$this->assertEquals(1, $result->key());
 	}
 
 
