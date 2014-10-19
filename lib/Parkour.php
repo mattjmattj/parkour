@@ -119,7 +119,7 @@ class Parkour {
 	 *	@return boolean Result.
 	 */
 	public static function some(array $data, callable $test) {
-		return self::mapReduce($data, $test, new Disjunct(), false);
+		return self::firstOk($data, $test) !== false;
 	}
 
 

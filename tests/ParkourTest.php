@@ -189,7 +189,7 @@ class ParkourTest extends TestCase {
 		$closure = $this->closure([
 			[1, 0, true],
 			[2, 1, false]
-		]);
+		],1);
 
 		$this->assertTrue(Parkour::some($data, $closure));
 	}
