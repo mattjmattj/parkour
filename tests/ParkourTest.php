@@ -159,7 +159,7 @@ class ParkourTest extends TestCase {
 		$closure = $this->closure([
 			[1, 0, false],
 			[2, 1, true]
-		]);
+		],1);
 
 		$this->assertFalse(Parkour::every($data, $closure));
 

@@ -105,7 +105,7 @@ class Parkour {
 	 *	@return boolean Result.
 	 */
 	public static function every(array $data, callable $test) {
-		return self::mapReduce($data, $test, new Conjunct(), true);
+		return self::firstNotOk($data, $test) === false;
 	}
 
 
