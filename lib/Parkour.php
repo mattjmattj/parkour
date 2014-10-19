@@ -6,8 +6,6 @@
  */
 namespace Parkour;
 
-use Parkour\Functor\Conjunct;
-use Parkour\Functor\Disjunct;
 use Parkour\Functor\Identity;
 use Parkour\Functor\AlwaysTrue;
 
